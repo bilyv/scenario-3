@@ -35,6 +35,7 @@ export default function Register({ onRegister, onShowLogin }) {
           <div>
             <label className="text-sm text-slate-600">Username</label>
             <input
+              autoComplete="username"
               className="mt-1 w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -45,6 +46,7 @@ export default function Register({ onRegister, onShowLogin }) {
             <label className="text-sm text-slate-600">Password</label>
             <input
               type="password"
+              autoComplete="new-password"
               className="mt-1 w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -55,6 +57,7 @@ export default function Register({ onRegister, onShowLogin }) {
             <label className="text-sm text-slate-600">Confirm Password</label>
             <input
               type="password"
+              autoComplete="new-password"
               className="mt-1 w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900"
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
