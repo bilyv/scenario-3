@@ -9,7 +9,8 @@
                     "preview":  "vite preview",
                     "dev:frontend":  "vite",
                     "dev":  "concurrently \"npm.cmd --prefix ..\\\\backend-project run dev\" \"npm.cmd run dev:frontend\"",
-                    "dev:full":  "npm.cmd run dev"
+                    "dev:full":  "npm.cmd run dev",
+                    "demo":  "node scripts/remove-auth-demo.js"
                 },
     "dependencies":  {
                          "axios":  "^1.13.6",
