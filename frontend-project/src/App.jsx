@@ -1,6 +1,7 @@
 ﻿import { useEffect, useState } from "react";
 import api from "./api";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import CarPage from "./pages/CarPage";
 import PackagePage from "./pages/PackagePage";
 import ServicePage from "./pages/ServicePage";
@@ -19,6 +20,7 @@ export default function App() {
   const [active, setActive] = useState("car");
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [authView, setAuthView] = useState("login");
 
   useEffect(() => {
     const check = async () => {
@@ -37,6 +39,7 @@ export default function App() {
   const handleLogout = async () => {
     await api.post("/auth/logout");
     setUser(null);
+    setAuthView("login");
   };
 
   if (loading) {
@@ -46,7 +49,11 @@ export default function App() {
   }
 
   if (!user) {
-    return <Login onLogin={setUser} />;
+    return authView === "register" ? (
+      <Register onRegister={setUser} onShowLogin={() => setAuthView("login")} />
+    ) : (
+      <Login onLogin={setUser} onShowRegister={() => setAuthView("register")} />
+    );
   }
 
   return (
