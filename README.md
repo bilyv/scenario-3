@@ -13,6 +13,7 @@ SmartPark provides car-related services and needs to manage car washing sales ef
 
 <video src="./smart-park.mp4" controls width="800"></video>
 
+[▶ Watch SmartPark Demo](./smart-park.mp4)
 ## Project Structure
 - `C:\Users\K  BRIAN\Documents\Playground\backend-project`
   - Node.js + Express backend
@@ -130,6 +131,7 @@ Reports:
 
 ## Cleanup
 When the assessment is complete, remove the project only after asking permission from the assessor.
+
 
 
 
