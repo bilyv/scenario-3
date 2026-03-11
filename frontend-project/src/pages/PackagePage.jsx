@@ -77,7 +77,7 @@ export default function PackagePage() {
           <button className="px-5 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800">
             Save Package
           </button>
-          {message && <span className="text-sm text-emerald-600">{message}</span>}
+          {message && <span className="text-sm text-neutral-700">{message}</span>}
         </div>
       </form>
 
@@ -106,3 +106,4 @@ export default function PackagePage() {
     </div>
   );
 }
+

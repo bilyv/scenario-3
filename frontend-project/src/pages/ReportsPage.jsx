@@ -96,7 +96,7 @@ export default function ReportsPage() {
             Generate Bill
           </button>
         </div>
-        {message && <div className="text-sm text-red-600">{message}</div>}
+        {message && <div className="text-sm text-neutral-700">{message}</div>}
         {bill && (
           <div className="border border-slate-200 rounded-xl p-4 bg-slate-50">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
@@ -117,3 +117,4 @@ export default function ReportsPage() {
     </div>
   );
 }
+

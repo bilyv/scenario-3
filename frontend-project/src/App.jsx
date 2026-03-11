@@ -44,7 +44,7 @@ export default function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-slate-500">Loading...</div>
+      <div className="min-h-screen flex items-center justify-center text-neutral-500">Loading...</div>
     );
   }
 
@@ -57,34 +57,39 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
-      <div className="max-w-6xl mx-auto px-4 py-6">
-        <div className="flex flex-col gap-4">
-          <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-            <div>
-              <h1 className="text-3xl font-semibold text-slate-900">CWSMS</h1>
-              <p className="text-slate-500">Car Washing Sales Management System</p>
+    <div className="min-h-screen bg-white text-neutral-900">
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="flex flex-col gap-6">
+          <header className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <div className="space-y-1">
+              <div className="text-xs uppercase tracking-[0.2em] text-neutral-500">
+                SmartPark
+              </div>
+              <h1 className="text-3xl md:text-4xl font-semibold">CWSMS Dashboard</h1>
+              <p className="text-sm text-neutral-500">
+                Car Washing Sales Management System
+              </p>
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-sm text-slate-600">Logged in as {user.username}</span>
+              <span className="text-sm text-neutral-500">{user.username}</span>
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 rounded-lg bg-slate-900 text-white text-sm hover:bg-slate-800"
+                className="px-4 py-2 text-sm border border-black text-black hover:bg-black hover:text-white transition"
               >
                 Logout
               </button>
             </div>
           </header>
 
-          <nav className="flex flex-wrap gap-2 bg-white rounded-xl shadow-sm border border-slate-100 p-2">
+          <nav className="flex flex-wrap gap-5 border-b border-neutral-200 pb-2">
             {pages.map((p) => (
               <button
                 key={p.key}
                 onClick={() => setActive(p.key)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+                className={`text-sm uppercase tracking-widest pb-2 border-b-2 transition ${
                   active === p.key
-                    ? "bg-slate-900 text-white"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                    ? "border-black text-black"
+                    : "border-transparent text-neutral-500 hover:text-black"
                 }`}
               >
                 {p.label}
@@ -92,7 +97,7 @@ export default function App() {
             ))}
           </nav>
 
-          <main className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 md:p-6">
+          <main className="border border-neutral-200 rounded-2xl p-5 md:p-8">
             {active === "car" && <CarPage />}
             {active === "packages" && <PackagePage />}
             {active === "service" && <ServicePage />}

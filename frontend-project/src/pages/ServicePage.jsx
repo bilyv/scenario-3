@@ -138,7 +138,7 @@ export default function ServicePage() {
               Cancel
             </button>
           )}
-          {message && <span className="text-sm text-emerald-600">{message}</span>}
+          {message && <span className="text-sm text-neutral-700">{message}</span>}
         </div>
       </form>
 
@@ -169,7 +169,7 @@ export default function ServicePage() {
                   </button>
                   <button
                     onClick={() => removeRow(s.RecordNumber)}
-                    className="px-3 py-1 rounded bg-red-50 text-red-600 hover:bg-red-100"
+                    className="px-3 py-1 rounded bg-neutral-100 text-neutral-700 hover:bg-red-100"
                   >
                     Delete
                   </button>
@@ -182,3 +182,4 @@ export default function ServicePage() {
     </div>
   );
 }
+
