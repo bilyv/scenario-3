@@ -13,6 +13,10 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.json());
+app.use((req, _res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "cwsms-secret",
@@ -30,6 +34,30 @@ const requireAuth = (req, res, next) => {
 };
 
 // --- Auth ---
+app.post("/api/auth/register", async (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({ message: "Username and password required" });
+  }
+
+  const [existing] = await pool.query(
+    "SELECT id FROM users WHERE username = ?",
+    [username]
+  );
+  if (existing.length > 0) {
+    return res.status(409).json({ message: "Username already exists" });
+  }
+
+  const hash = await bcrypt.hash(password, 10);
+  const [result] = await pool.query(
+    "INSERT INTO users (username, password_hash) VALUES (?, ?)",
+    [username, hash]
+  );
+
+  req.session.user = { id: result.insertId, username };
+  res.json({ id: result.insertId, username });
+});
+
 app.post("/api/auth/login", async (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
@@ -60,7 +88,7 @@ app.post("/api/auth/logout", (req, res) => {
 });
 
 app.get("/api/auth/me", (req, res) => {
-  if (!req.session.user) return res.status(401).json({ message: "Unauthorized" });
+  if (!req.session.user) return res.status(204).end();
   res.json(req.session.user);
 });
 
@@ -176,7 +204,18 @@ app.get("/api/reports/daily", requireAuth, async (req, res) => {
   res.json(rows);
 });
 
-app.listen(PORT, () => {
-  console.log(`CWSMS backend running on http://localhost:${PORT}`);
-});
+const checkDb = async () => {
+  try {
+    await pool.query("SELECT 1");
+    console.log("Database connected successfully.");
+  } catch (err) {
+    console.error("Database connection failed:", err.message);
+  }
+};
 
+(async () => {
+  await checkDb();
+  app.listen(PORT, () => {
+    console.log(`CWSMS backend running on http://localhost:${PORT}`);
+  });
+})();
