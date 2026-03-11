@@ -1,4 +1,5 @@
-﻿# SmartPark Car Washing Sales Management System (CWSMS)
+﻿<video src="C:/Users/K  BRIAN/Videos/smart park.mp4" controls width="800"></video>
+# SmartPark Car Washing Sales Management System (CWSMS)
 
 This project implements the SmartPark Car Washing Sales Management System for Rubavu District, Rwanda. It replaces the paper-based workflow with a web-based system that captures car details, manages service packages, records payments, and generates reports.
 
@@ -128,3 +129,4 @@ Reports:
 
 ## Cleanup
 When the assessment is complete, remove the project only after asking permission from the assessor.
+
